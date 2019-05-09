@@ -1,0 +1,36 @@
+{
+  "name": "me-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha 'test/**/*.js'",
+    "test1": "docker-compose run node_alpine npm test",
+    "test2": "docker-compose run node_10_alpine npm test",
+    "test3": "docker-compose run node_6_alpine npm test",
+    "report-coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "report-codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "production": "NODE_ENV='production' node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^2.2.30",
+    "morgan": "^1.9.1",
+    "socket.io": "^2.2.0",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "mongoose": "^5.4.13",
+    "nyc": "^13.3.0"
+  }
+}

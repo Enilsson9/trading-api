@@ -1,0 +1,25 @@
+version: "3"
+services:
+    node_alpine:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-node-alpine
+        volumes:
+            - ./:/app/
+            - /app/node_modules/
+
+    node_10_alpine:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-node-10-alpine
+        volumes:
+            - ./:/app/
+            - /app/node_modules/
+
+    node_6_alpine:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-node-6-alpine
+        volumes:
+            - ./:/app/
+            - /app/node_modules/
