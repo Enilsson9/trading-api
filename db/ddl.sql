@@ -1,7 +1,9 @@
+DROP TABLE IF EXISTS User;
 CREATE TABLE IF NOT EXISTS User (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(60) NOT NULL,
     stocks INT,
     funds FLOAT,
-    UNIQUE(email)
+    UNIQUE(id, email)
 );

@@ -35,9 +35,11 @@ router.post('/', function(req, res, next) {
           });
       }
 
-      db.run("INSERT INTO User (email, password) VALUES (?, ?)",
+      db.run("INSERT INTO User (email, password, funds, stocks) VALUES (?, ?, ?, ?)",
           email,
-          hash, (err) => {
+          hash,
+          0,
+          0, (err) => {
               if (err) {
                   return res.status(500).json({
                       errors: {
