@@ -26,10 +26,12 @@ const corsOptions = {
   origin: 'https://project.edwardnilsson.se'
 }
 
-app.use('/login', cors(corsOptions), login);
-app.use('/register', cors(corsOptions), register);
-app.use('/update', cors(corsOptions), update);
-app.use('/data', cors(corsOptions), data);
+app.use(cors(corsOptions));
+
+app.use('/login', login);
+app.use('/register', register);
+app.use('/update', update);
+app.use('/data', data);
 
 
 
