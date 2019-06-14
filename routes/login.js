@@ -12,6 +12,8 @@ router.post('/', function(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
 
+  res.header("Access-Control-Allow-Origin", "*");
+
   if (!email || !password) {
       return res.status(401).json({
           errors: {
