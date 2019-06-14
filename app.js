@@ -12,19 +12,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 8333;
 
-var whitelist = ['https://project.edwardnilsson.se', 'https://project-api.edwardnilsson.se']
-var corsOptionsDelegate = function (req, callback) {
-  var corsOptions;
-  if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false } // disable CORS for this request
-  }
-  callback(null, corsOptions) // callback expects two parameters: error and options
-}
-
-app.use(cors(corsOptionsDelegate));
-
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -35,11 +22,14 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
+const corsOptions = {
+  origin: 'https://project.edwardnilsson.se'
+}
 
-app.use('/login', login);
-app.use('/register', register);
-app.use('/update', update);
-app.use('/data', data);
+app.use('/login', cors(corsOptions), login);
+app.use('/register', cors(corsOptions), register);
+app.use('/update', cors(corsOptions), update);
+app.use('/data', cors(corsOptions), data);
 
 
 
