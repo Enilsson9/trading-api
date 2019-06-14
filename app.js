@@ -18,20 +18,25 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
-app.options('*', cors());
-
-
 // don't show the log when it is test
 if (process.env.NODE_ENV !== 'test') {
     // use morgan to log at command line
     app.use(morgan('combined')); // 'combined' outputs the Apache style LOGs
 }
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 app.use('/login', login);
 app.use('/register', register);
 app.use('/update', update);
 app.use('/data', data);
+
+
 
 // Start up server
 const server = app.listen(port, () => console.log(`Example API listening on port ${port}!`));
