@@ -25,7 +25,7 @@ function getData(res, body) {
     }
 
 
-    db.each("SELECT * FROM User WHERE email = ?",
+    db.get("SELECT * FROM User WHERE email = ?",
         email, (err, row) => {
             if (err) {
                 return res.status(500).json({
