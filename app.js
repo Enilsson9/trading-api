@@ -51,7 +51,10 @@ app.use('/data', data);
 // Start up server
 const server = app.listen(port, () => console.log(`Example API listening on port ${port}!`));
 
-const io = require('socket.io')(server);;
+const io = require('socket.io')(server);
+
+io.origins(['https://project.edwardnilsson.se']);
+
 
 var princessTarta = {
     name: "gasoline",
