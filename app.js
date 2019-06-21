@@ -17,7 +17,7 @@ const port = 8333;
 
 
 
-var whitelist = ['https://project.edwardnilsson.se', 'https://socket.edwardnilsson.se']
+/*var whitelist = ['https://project.edwardnilsson.se', 'https://socket.edwardnilsson.se']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -26,10 +26,11 @@ var corsOptions = {
       callback(new Error('Not allowed by CORS'))
     }
   }
-}
+}*/
 
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -53,7 +54,7 @@ const server = app.listen(port, () => console.log(`Example API listening on port
 
 const io = require('socket.io')(server);
 
-io.origins(['https://project.edwardnilsson.se']);
+io.origins('*:*')
 
 
 var princessTarta = {
